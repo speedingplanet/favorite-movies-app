@@ -1,12 +1,14 @@
 import React, { FormEventHandler, useState } from 'react';
-import { useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { BootstrapInput } from '../common/BootstrapInput';
 import { User } from '../favorite-movie-types';
+import { login } from './users-slice';
 
 export default function ReturningUserForm() {
   let [validation, setValidation] = useState({ className: '', message: '' });
 
   // TODO: Import AppDispatch to create a dispatch function
+  let dispatch = useAppDispatch();
 
   const usersByEmail = useAppSelector((state) => {
     let users = state.users.items;
@@ -25,7 +27,10 @@ export default function ReturningUserForm() {
     if (usersByEmail[email]) {
       // Log the user in
       // TODO: dispatch an update that this is the logged in user
-      // Don't forget to import AppDispatch 
+      // Don't forget to import AppDispatch
+      dispatch(login(usersByEmail[email]));
+      setValidation({ className: 'yellow-fade', message: `User ${email} logged in` });
+      event.currentTarget.reset();
     } else {
       setValidation({ className: 'red-alert', message: `User ${email} not found` });
     }

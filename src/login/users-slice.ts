@@ -26,7 +26,14 @@ export const addUser = createAsyncThunk('users/addUser', async (user: User, thun
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    login(state, action: PayloadAction<User>) {
+      state.loggedInUser = action.payload;
+    },
+    logout(state) {
+      state.loggedInUser = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(addUser.fulfilled, (state, action: PayloadAction<User>) => {
       state.items.push(action.payload);
@@ -37,4 +44,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const { login, logout } = usersSlice.actions;
 export default usersSlice.reducer;
