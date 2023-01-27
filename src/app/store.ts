@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import movieReducer, { fetchMovies } from '../movies/movies-slice';
+import usersReducer from '../login/users-slice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     movies: movieReducer,
+    users: usersReducer,
   },
 });
 

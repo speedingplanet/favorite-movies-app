@@ -14,10 +14,10 @@ export interface Movie extends HasId {
 export type ClientMovie = Omit<Movie, 'id'>;
 
 export interface User extends HasId {
-  username: string;
+  userName: string;
   email: string;
   displayName: string;
-  movies: ID[];
+  movies?: ID[];
   friends?: ID[];
 }
 
