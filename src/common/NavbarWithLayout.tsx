@@ -29,6 +29,13 @@ export default function NavbarWithLayout() {
                   Friends
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/login"
+                  className="nav-link">
+                  Log in
+                </NavLink>
+              </li>
             </ul>
           </nav>
           <hr />

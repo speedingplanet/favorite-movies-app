@@ -3,6 +3,7 @@ import MoviesManager from './movies/MoviesManager';
 import FriendsManager from './friends/FriendsManager';
 import { Route, Routes } from 'react-router-dom';
 import NavbarWithLayout from './common/NavbarWithLayout';
+import LoginManager from './login/LoginManager';
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
           <Route
             path="movies"
             element={<MoviesManager />}
+          />
+          <Route
+            path="login"
+            element={<LoginManager />}
           />
         </Route>
       </Routes>
