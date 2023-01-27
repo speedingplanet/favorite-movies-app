@@ -10,6 +10,11 @@ interface UsersState {
 
 const initialState: UsersState = { items: [], loggedInUser: undefined };
 
+export const fetchUsers = createAsyncThunk('users/fetchUsers', async (arg, thunkAPI) => {
+  const users = await client.getUsers();
+  return users;
+});
+
 export const addUser = createAsyncThunk('users/addUser', async (user: User, thunkAPI) => {
   const updatedUser = await client.addUser(user);
   return updatedUser;
@@ -25,6 +30,9 @@ const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addUser.fulfilled, (state, action: PayloadAction<User>) => {
       state.items.push(action.payload);
+    });
+    builder.addCase(fetchUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
+      state.items = action.payload;
     });
   },
 });

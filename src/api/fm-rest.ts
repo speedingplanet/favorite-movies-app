@@ -17,6 +17,21 @@ async function getMovies() {
   }
 }
 
+async function getUsers() {
+  try {
+    let response = await fetch(`${url}/users`);
+    if (response.ok) {
+      let users = await response.json();
+      return users;
+    } else {
+      throw Error(`Bad HTTP response: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('fm-rest (getUsers) error:', error);
+    throw error;
+  }
+}
+
 async function addUser(user: User) {
   try {
     let response = await fetch(`${url}/users`, {
@@ -41,6 +56,7 @@ async function addUser(user: User) {
 let client = {
   getMovies,
   addUser,
+  getUsers,
 };
 
 export { client };
