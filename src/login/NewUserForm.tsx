@@ -22,6 +22,7 @@ export default function NewUserForm() {
     // Dispatch it to Redux
     // We know our partial user is a good User, so...
     dispatch(addUser(partialUser as User));
+    event.currentTarget.reset();
   };
 
   const handleUpdateValue: UpdateValueHandler<User> = (fieldName, value) => {

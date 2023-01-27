@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useState } from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 export type UpdateValueHandler<T> = (field: keyof T, value: string) => void;
 
@@ -10,12 +10,10 @@ interface BootstrapInputProps<T> extends React.ComponentPropsWithoutRef<'input'>
 }
 
 export function BootstrapInput<T>(props: BootstrapInputProps<T>) {
-  let [value, setValue] = useState('');
   let { containerClass, labelClass, labelText, updateValue, ...rest } = props;
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     updateValue && updateValue(event.currentTarget.name as keyof T, event.currentTarget.value);
-    setValue(event.currentTarget.value);
   };
 
   return (
@@ -27,7 +25,6 @@ export function BootstrapInput<T>(props: BootstrapInputProps<T>) {
       </label>
       <input
         {...rest}
-        value={value}
         onChange={handleChange}
         type={rest.type ?? 'text'}
         className={`form-control ${rest.className}`}
