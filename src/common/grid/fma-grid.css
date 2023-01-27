@@ -1,0 +1,23 @@
+.fma-grid-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow-y: auto;
+
+  /* Uncomment this to see fixed headers in action */
+  /* height: 10vh; */
+}
+
+.fma-grid-header {
+  border-bottom: 1px lightgray solid;
+  position: sticky;
+  /* Need this to "stick" these to the top */
+  top: 0;
+  /* Without a brackground color, you can see "behind" the header row */
+  background-color: white;
+}
+
+.fma-grid-header,
+.fma-grid-body-row {
+  /* padding: top right bottom left */
+  padding: 0 1em 0 0.2em;
+}
