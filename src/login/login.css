@@ -1,0 +1,18 @@
+@keyframes highlight {
+  from {
+    background-color: yellow;
+  }
+  to {
+    background-color: white;
+  }
+}
+
+.yellow-fade {
+  animation-name: highlight;
+  animation-duration: 2s;
+}
+
+.red-alert {
+  color: white;
+  background-color: red;
+}

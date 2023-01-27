@@ -23,6 +23,12 @@
   - If the user doesn't appear, add
   - If the user does appear, warn
 - [ ] Returning user form
+
+  - users-slice.ts: Add a reducer (NOT an extraReducer) to set `state.loggedInUser` to a particular User. Call the reducer `login`.
+    - Look at the reducers in `movies-slice` for inspiration
+  - ReturningUserForm: dispatch the associated action (also `login`) to Redux when the form is submitted
+    - Look at the dispatch setup in `NewUserForm` for details
+
 - [ ] Check to find returning user
 
 ## Movie routing

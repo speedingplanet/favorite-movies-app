@@ -3,11 +3,12 @@ import { BootstrapInput, UpdateValueHandler } from '../common/BootstrapInput';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { User } from '../favorite-movie-types';
 import { addUser } from './users-slice';
+import './login.css';
 
 let formData: Map<keyof User, string> = new Map();
 
 export default function NewUserForm() {
-  let [validationMessage, setValidationMessage] = useState('');
+  let [validation, setValidation] = useState({ className: '', message: '' });
 
   const dispatch = useAppDispatch();
   const usersByEmail = useAppSelector((state) => {
@@ -33,14 +34,18 @@ export default function NewUserForm() {
     // Could this be a duplicate?
     if (partialUser.email && usersByEmail[partialUser.email]) {
       // Don't dispatch & don't reset!
-      setValidationMessage(
-        `Email ${partialUser.email} exists in the database. Please use another email`
-      );
+      setValidation({
+        message: `Email ${partialUser.email} exists in the database. Please use another email`,
+        className: 'red-alert',
+      });
     } else {
       // We know our partial user is a good User, so...
       dispatch(addUser(partialUser as User));
       event.currentTarget.reset();
-      setValidationMessage(`User ${partialUser.email} successfully added`);
+      setValidation({
+        message: `User ${partialUser.email} successfully added`,
+        className: 'yellow-fade',
+      });
     }
   };
 
@@ -53,7 +58,7 @@ export default function NewUserForm() {
       <div>
         <h3>New User</h3>
       </div>
-      <div style={{ color: 'white', backgroundColor: 'red' }}>{validationMessage}</div>
+      <div className={validation.className}>{validation.message}</div>
       <form onSubmit={handleSubmit}>
         <BootstrapInput
           updateValue={handleUpdateValue}
