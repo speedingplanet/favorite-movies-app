@@ -1,7 +1,6 @@
 # Routing for our application
 
-[ ] Add a route for "Login"
-
+- [ ] Add a route for "Login"
 - Create a "login" folder
 - Create a LoginManager component (the basic template will do for now)
 - In `NavBarWithLayout.tsx`, add a `NavLink` for /login
