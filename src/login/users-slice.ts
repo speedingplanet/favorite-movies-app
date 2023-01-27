@@ -20,7 +20,7 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addUser.fulfilled, (state, action) => {
+    builder.addCase(addUser.fulfilled, (state, action: PayloadAction<User>) => {
       state.items.push(action.payload);
     });
   },
