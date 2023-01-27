@@ -1,13 +1,23 @@
-import React, { FormEventHandler } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import { BootstrapInput, UpdateValueHandler } from '../common/BootstrapInput';
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { User } from '../favorite-movie-types';
 import { addUser } from './users-slice';
 
 let formData: Map<keyof User, string> = new Map();
 
 export default function NewUserForm() {
+  let [validationMessage, setValidationMessage] = useState('');
+
   const dispatch = useAppDispatch();
+  const usersByEmail = useAppSelector((state) => {
+    let users = state.users.items;
+    let usersByEmail: { [key: string]: User } = {};
+    for (let user of users) {
+      usersByEmail[user.email] = user;
+    }
+    return usersByEmail;
+  });
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
@@ -20,9 +30,18 @@ export default function NewUserForm() {
     }
 
     // Dispatch it to Redux
-    // We know our partial user is a good User, so...
-    dispatch(addUser(partialUser as User));
-    event.currentTarget.reset();
+    // Could this be a duplicate?
+    if (partialUser.email && usersByEmail[partialUser.email]) {
+      // Don't dispatch & don't reset!
+      setValidationMessage(
+        `Email ${partialUser.email} exists in the database. Please use another email`
+      );
+    } else {
+      // We know our partial user is a good User, so...
+      dispatch(addUser(partialUser as User));
+      event.currentTarget.reset();
+      setValidationMessage(`User ${partialUser.email} successfully added`);
+    }
   };
 
   const handleUpdateValue: UpdateValueHandler<User> = (fieldName, value) => {
@@ -34,6 +53,7 @@ export default function NewUserForm() {
       <div>
         <h3>New User</h3>
       </div>
+      <div style={{ color: 'white', backgroundColor: 'red' }}>{validationMessage}</div>
       <form onSubmit={handleSubmit}>
         <BootstrapInput
           updateValue={handleUpdateValue}

@@ -17,6 +17,11 @@
 - Store locally in Redux
 - Storing locally is bad, but we're prototyping!
 - [x] Push to server
+- [x] Check duplicates
+  - Add user
+  - Check user against (Redux? Server?)
+  - If the user doesn't appear, add
+  - If the user does appear, warn
 - [ ] Returning user form
 - [ ] Check to find returning user
 
