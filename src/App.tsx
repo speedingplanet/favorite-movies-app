@@ -30,7 +30,7 @@ function App() {
             element={<MoviesManager />}
           />
           <Route
-            path="login"
+            path="login/*"
             element={<LoginManager />}
           />
         </Route>
