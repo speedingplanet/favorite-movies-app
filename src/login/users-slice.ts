@@ -14,6 +14,9 @@ export const addUser = createAsyncThunk('users/addUser', async (user: User, thun
   const updatedUser = await client.addUser(user);
   return updatedUser;
 });
+// => {type: 'users/addUser.pending', payload: null}
+// => {type: 'users/addUser.fulfilled', payload: updatedUser}
+// => {type: 'users/addUser.rejected', payload: error}
 
 const usersSlice = createSlice({
   name: 'users',
