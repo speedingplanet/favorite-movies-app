@@ -2,25 +2,28 @@
 
 ## Routing for logins
 
-- [ ] Add a route for "Login"
+- [x] Add a route for "Login"
 - Create a "login" folder
 - Create a LoginManager component (the basic template will do for now) under the `login` folder
 - In `NavBarWithLayout.tsx`, add a `NavLink` for `/login`
 - In `App.tsx` add a `Route` (under the one for the root) for 'login' that loads `LoginManager`
 - Try it out!
 
+## Login page
+
+- [ ] Login screen
+- New user? Returning user?
+- [ ] New user form
+- Store locally in Redux
+- Storing locally is bad, but we're prototyping!
+- [ ] Push to server
+- [ ] Returning user form
+- [ ] Check to find returning user
+
 ## Movie routing
 
 - [ ] List all movies
 - [ ] Add a movie
-
-## Login page
-
-- [ ] Login screen
-- New user? Returning user
-- [ ] New user form
-- [ ] Returning user form
-- Storing locally is bad, but we're prototyping!
 
 ## Back to movie routing
 
