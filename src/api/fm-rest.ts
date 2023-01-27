@@ -1,3 +1,5 @@
+import { User } from '../favorite-movie-types';
+
 let url = 'https://favorite-movies-endpoint.azurewebsites.net';
 
 async function getMovies() {
@@ -15,8 +17,30 @@ async function getMovies() {
   }
 }
 
+async function addUser(user: User) {
+  try {
+    let response = await fetch(`${url}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    });
+    if (response.ok) {
+      let updatedUser = await response.json();
+      return updatedUser;
+    } else {
+      throw Error(`Bad HTTP response: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('fm-rest addUser() error:', error);
+    throw error;
+  }
+}
+
 let client = {
   getMovies,
+  addUser,
 };
 
 export { client };

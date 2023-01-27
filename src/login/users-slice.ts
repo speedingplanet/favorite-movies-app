@@ -1,22 +1,29 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { client } from '../api/fm-rest';
 import { User } from '../favorite-movie-types';
 
 interface UsersState {
   items: User[];
   loggedInUser: User | undefined;
+  pendingUser?: User;
 }
 
 const initialState: UsersState = { items: [], loggedInUser: undefined };
 
+export const addUser = createAsyncThunk('users/addUser', async (user: User, thunkAPI) => {
+  const updatedUser = await client.addUser(user);
+  return updatedUser;
+});
+
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {
-    addUser(state, action: PayloadAction<User>) {
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(addUser.fulfilled, (state, action) => {
       state.items.push(action.payload);
-    },
+    });
   },
 });
 
-export const { addUser } = usersSlice.actions;
 export default usersSlice.reducer;
