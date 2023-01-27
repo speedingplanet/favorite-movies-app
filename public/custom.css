@@ -1,0 +1,13 @@
+nav .active {
+  color: white !important;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: lightgray;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none; /* Might be frustrating since the text is unselectable */
+}
