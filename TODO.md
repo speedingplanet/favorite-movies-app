@@ -11,12 +11,12 @@
 
 ## Login page
 
-- [ ] Login screen
+- [x] Login screen
 - New user? Returning user?
-- [ ] New user form
+- [x] New user form
 - Store locally in Redux
 - Storing locally is bad, but we're prototyping!
-- [ ] Push to server
+- [x] Push to server
 - [ ] Returning user form
 - [ ] Check to find returning user
 
