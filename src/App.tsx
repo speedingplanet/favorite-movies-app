@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MoviesManager from './movies/MoviesManager';
 import FriendsManager from './friends/FriendsManager';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import NavbarWithLayout from './common/NavbarWithLayout';
 
 function App() {
   return (
@@ -11,30 +12,24 @@ function App() {
           <h1>Favorite Movies App</h1>
         </header>
       </div>
-      <div className="row">
-        <div className="col-2">
-          <ul>
-            <li>
-              <Link to="movies">Movies</Link>
-            </li>
-            <li>
-              <Link to="friends">Friends</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="col">
-          <Routes>
-            <Route
-              path="movies"
-              element={<MoviesManager />}
-            />
-            <Route
-              path="friends"
-              element={<FriendsManager />}
-            />
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={<NavbarWithLayout />}>
+          <Route
+            index
+            element={<div>This is the default route</div>}
+          />
+          <Route
+            path="friends"
+            element={<FriendsManager />}
+          />
+          <Route
+            path="movies"
+            element={<MoviesManager />}
+          />
+        </Route>
+      </Routes>
     </main>
   );
 }
