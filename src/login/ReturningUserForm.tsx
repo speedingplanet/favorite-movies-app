@@ -29,8 +29,8 @@ export default function ReturningUserForm() {
       // TODO: dispatch an update that this is the logged in user
       // Don't forget to import AppDispatch
       dispatch(login(usersByEmail[email]));
-      setValidation({ className: 'yellow-fade', message: `User ${email} logged in` });
       event.currentTarget.reset();
+      setValidation({ className: 'yellow-fade', message: `User ${email} logged in` });
     } else {
       setValidation({ className: 'red-alert', message: `User ${email} not found` });
     }

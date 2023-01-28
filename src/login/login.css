@@ -1,15 +1,19 @@
 @keyframes highlight {
   from {
     background-color: yellow;
+    opacity: 1;
   }
   to {
     background-color: white;
+    opacity: 0;
+    color: white;
   }
 }
 
 .yellow-fade {
   animation-name: highlight;
   animation-duration: 2s;
+  animation-direction: reverse;
 }
 
 .red-alert {
